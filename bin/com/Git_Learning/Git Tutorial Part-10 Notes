@@ -1,0 +1,243 @@
+====================================================================================PART-10=============================================================================
+
+Resolve Merge Conflicts:                                Test.txt
+------------------------                                2 Lines
+                                                        +1 Line 
+                                                        --------
+                                                       /| MC3  |\  
+                                                      / |      | \
+                        Test.txt          Test.txt   /  --------  \
+                        1 Line            2 Line    /              \
+                        --------          -------- /                \ --------
+                        | MC1  |----------| MC2  |/                  \| M C  |
+                        |      |          |      |\                  /|      |
+                        --------          -------- \                / --------
+                                                    \              /
+                                                     \            /
+                                                      \ -------- /
+                                                       \| FC1  |/
+                                                        |      |
+                                                        --------
+                                                        Test.txt
+                                                        2 Lines
+                                                        +1 Line
+
+
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts
+$ git init
+Initialized empty Git repository in C:/Git Project to resolve Conflicts/.git/
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ vim test.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ cat test.txt
+this is my first line
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ git add test.txt;git commit -m "MC1"
+warning: LF will be replaced by CRLF in test.txt.
+The file will have its original line endings in your working directory
+[master (root-commit) 3f2db09] MC1
+ 1 file changed, 1 insertion(+)
+ create mode 100644 test.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ vim test.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ cat test.txt
+this is my first line
+this is my second line
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ git add test.txt;git commit -m "MC2"
+warning: LF will be replaced by CRLF in test.txt.
+The file will have its original line endings in your working directory
+[master 8b04d8a] MC2
+ 1 file changed, 1 insertion(+)
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ git log --oneline
+8b04d8a (HEAD -> master) MC2
+3f2db09 MC1
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ git branch feature
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ git checkout feature
+Switched to branch 'feature'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (feature)
+$ git branch
+* feature
+  master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (feature)
+$ git log --oneline
+8b04d8a (HEAD -> feature, master) MC2
+3f2db09 MC1
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (feature)
+$ vim test.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (feature)
+$ cat test.txt
+this is my first line
+this is my second line
+added new line by feature
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (feature)
+$ git add test.txt;git commit -m "FC1"
+warning: LF will be replaced by CRLF in test.txt.
+The file will have its original line endings in your working directory
+[feature 310c709] FC1
+ 1 file changed, 1 insertion(+)
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (feature)
+$ git log --oneline
+310c709 (HEAD -> feature) FC1
+8b04d8a (master) MC2
+3f2db09 MC1
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (feature)
+$ git checkout master
+Switched to branch 'master'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ git branch
+  feature
+* master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ cat test.txt
+this is my first line
+this is my second line
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ vim test.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ git add test.txt;git commit -m "MC3"
+[master c035eb3] MC3
+ 1 file changed, 1 insertion(+)
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ git log --oneline
+c035eb3 (HEAD -> master) MC3
+8b04d8a MC2
+3f2db09 MC1
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ git merge feature
+Auto-merging test.txt
+CONFLICT (content): Merge conflict in test.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master|MERGING)
+$ vim test.txt
+
+this is my first line
+this is my second line
+<<<<<<< HEAD
+added new line by master
+=======
+added new line by feature
+>>>>>>> feature
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+test.txt [dos] (07:25 22/03/2022)                                       7,14 All
+-- INSERT --
+
+So Here we want to delete the unwanted line from the vim test.txt, We can delete those lines by pressing 'd' button two times.
+Here first press 'i' button to --Insert-- and then press 'Esc' button then only we can delete the unwanted line by pressing 'd' button two times and save the file.
+
+this is my first line
+this is my second line
+added new line by master
+added new line by feature
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+test.txt [dos] (07:25 22/03/2022)                                       7,14 All
+:wq!
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master|MERGING)
+$ vim test.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master|MERGING)
+$ cat test.txt
+this is my first line
+this is my second line
+added new line by master
+added new line by feature
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master|MERGING)
+$ git add test.txt;git commit -m "MC"
+[master fdfc38c] MC
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ git log --oneline
+fdfc38c (HEAD -> master) MC
+c035eb3 MC3
+310c709 (feature) FC1
+8b04d8a MC2
+3f2db09 MC1
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ git log --oneline --graph
+*   fdfc38c (HEAD -> master) MC
+|\
+| * 310c709 (feature) FC1
+* | c035eb3 MC3
+|/
+* 8b04d8a MC2
+* 3f2db09 MC1
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ git branch
+  feature
+* master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ git branch -d feature
+Deleted branch feature (was 310c709).
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ git branch
+* master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ git log --oneline
+fdfc38c (HEAD -> master) MC
+c035eb3 MC3
+310c709 FC1
+8b04d8a MC2
+3f2db09 MC1

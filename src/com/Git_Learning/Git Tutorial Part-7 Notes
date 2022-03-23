@@ -1,0 +1,297 @@
+====================================================================================PART-7=============================================================================
+Git Commands:
+=============
+
+Git reset Command:
+------------------
+1) To remove changes from staging Area.
+2) To undo commits at Repository Level.
+ 
+                                             
+-----------------               -----------------               -----------------     
+|               |git add f.txt  |               |               |               | 
+|   Working     |-------------->|  Staging Area |-------------->|     Local     |     
+|  Directory    |git reset f.txt|               |               |  Repository   |
+|               |<--------------|               |               |               |
+-----------------               -----------------               -----------------
+
+1) To remove changes from staging Area:
+=======================================
+git reset file.extension
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project One
+$ git init
+Initialized empty Git repository in C:/Git Project One/.git/
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project One (master)
+$ vim index.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project One (master)
+$ git add index.txt
+warning: LF will be replaced by CRLF in index.txt.
+The file will have its original line endings in your working directory
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project One (master)
+$ ls
+index.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project One (master)
+$ git ls-files
+index.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project One (master)
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   index.txt
+
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project One (master)
+$ git reset index.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project One (master)
+$ ls
+index.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project One (master)
+$ git ls-files
+Empty
+
+           
+2) To undo commits at Repository Level:
+=======================================
+
+In All Types of reset concept Individual commit will not discard because It is the nature of the reset.
+
+                                                                 Local Repository
+-----------------               -----------------               -----------------     
+|               |               |               |  git commit   |   commit 3    | 
+|   Working     |               |  Staging Area |-------------->|   commit 2    |     
+|  Directory    |               |               |               |   commit 1    |
+|               |               |               |               |               |
+-----------------               -----------------               -----------------
+
+Reset Command for Repository level:
+-----------------------------------
+git reset <mode> <commit id>
+
+1)--mixed --> git reset --mixed 9238aa8
+
+Moves the HEAD to the Specific Commit, and all remaining recent commit will be removed.
+mode will decide whether these changes are going to remove from staging area and working directory or not.
+
+Types of mode we used for reset command:
+---------------------------------------- 
+--mixed
+--soft
+--hard
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git init
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ vim file1.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ vim file2.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ vim file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ ls
+file1.txt  file2.txt  file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git add file1.txt
+warning: LF will be replaced by CRLF in file1.txt.
+The file will have its original line endings in your working directory
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git commit -m "commited file1"
+[master (root-commit) 86f7006] commited file1
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file1.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git add file2.txt;git commit -m "commited file2" ----> (We can also add files and commit the files in single line)
+warning: LF will be replaced by CRLF in file2.txt.
+The file will have its original line endings in your working directory
+[master 9238aa8] commited file2
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file2.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git add file3.txt;git commit -m "commited file3"
+warning: LF will be replaced by CRLF in file3.txt.
+The file will have its original line endings in your working directory
+[master 14af605] commited file3
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ ls
+file1.txt  file2.txt  file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git ls-files
+file1.txt
+file2.txt
+file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git log --oneline
+14af605 (HEAD -> master) commited file3
+9238aa8 commited file2
+86f7006 commited file1
+
+1)1st type of mode:
+===================
+reset with --mixed Mode:
+i)It is a default Mode.
+ii)To discard commits in the local Repository and to discard changes in staging area we should use reset with --mixed option.
+iii)It will not Touch working Directory.
+
+If we want to undo the Latest commit-->(14af605 (HEAD -> master) commited file3) we have to give the previous commit ID--->(9238aa8 commited file2).  
+If we want to undo 2nd (9238aa8 commited file2) and 3rd (14af605 (HEAD -> master) commit we have to give the First commit ID--->(86f7006 commited file1),then it will undo all the Before commits.
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git reset --mixed 9238aa8
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ ls
+file1.txt  file2.txt  file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git ls-files
+file1.txt
+file2.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git log --oneline
+9238aa8 (HEAD -> master) commited file2
+86f7006 commited file1
+
+2)2nd type of mode: 
+===================
+reset with --soft Option:
+i)It is excatly same as --mixed option, but changes are available in working directory as well as in staging area.
+ii)It won't touch staging area and working directory.
+iii)As changes already present in staging area, just we have to use commit to revert back.
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git add file3.txt;git commit -m "adding file3 again"
+
+warning: LF will be replaced by CRLF in file3.txt.
+The file will have its original line endings in your working directory
+[master e94945b] adding file3 again
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ ls
+file1.txt  file2.txt  file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git ls-files
+file1.txt
+file2.txt
+file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git log --oneline
+e94945b (HEAD -> master) adding file3 again
+9238aa8 commited file2
+86f7006 commited file1
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git reset --soft 9238aa8
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ ls
+file1.txt  file2.txt  file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git ls-files
+file1.txt
+file2.txt
+file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git log --oneline
+9238aa8 (HEAD -> master) commited file2
+86f7006 commited file1
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git commit -m "commited file3 again"
+[master 76207d3] commited file3 again
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ ls
+file1.txt  file2.txt  file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git ls-files
+file1.txt
+file2.txt
+file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git log --oneline
+76207d3 (HEAD -> master) commited file3 again
+9238aa8 commited file2
+86f7006 commited file1
+
+3)3rd type of mode: 
+===================
+i)It is excatly same as --mixed  except that Changes will be removed from everywhere (local repository,staging area,working directory)
+ii)It is impossible to revert back and hence while using hard reset we have to take special care.
+
+In All Types of reset concept Individual commit will not discard because It is the nature of the reset.
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git reset --hard 86f7006
+HEAD is now at 86f7006 commited file1
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ ls
+file1.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git ls-files
+file1.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git log --oneline
+86f7006 (HEAD -> master) commited file1
+
+--mixed VS --soft VS --hard
+
+1. --mixed:
+===========
+i)Changes will be discarded in local repo and staging area.
+ii)It won't touch working directory.
+iii)working tree won't be clean
+iv)but we can revert with
+       git add .
+       git commit
+
+2. --soft:
+==========
+i)Changes will be discarded only in local repo.
+ii)It won't touch staging area and working directory.
+iii)working tree won't be clean
+iv)but we can revert with
+       git commit
+
+3. --hard:
+==========
+i)Changes will be discarded everywhere.
+ii)working tree won't be clean.
+iii)No way to revert.

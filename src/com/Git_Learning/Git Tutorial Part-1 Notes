@@ -1,0 +1,36 @@
+====================================================================================PART-1=============================================================================
+What is Git?                          
+-------------
+Git is Distributed Version Control System.
+
+Git Architecture:                                                       |
+-----------------       This part is not require Network.               | This part require some Network.
+-------------           -------------           --------------   push   |-------------- 
+| Working   |   add     |  Staging  |   commit  |    Git     |--------->||   GitHUB   |
+| Directory |---------->|     or    |---------->|   Local    |clone/pull||   Remote   |
+| or Space  |           |   Index   |           | Repository |<---------|| Repository |
+-------------           -------------           --------------          |--------------
+UnTracked Files         Tracked Files           Commited Files          | Remote Files
+---------------------------------------------------------------         |
+     |                        |                       |   
+     --------------------------------------------------
+   This three Part are in Local Machine/Computer we using.
+   
+      
+WorkingDirectories:
+====================
+What are the file currently we are working in IDE are Present in WorkingDirectories.
+
+Staging:
+========
+Staging is a Virtual Layer In Between WorkingDirectories and LocalRepo.
+Before we are commiting in to localRepo we have to add those files in Staging.
+
+LocalRepo:
+==========
+And From there we can commit it into Local Repo.
+
+GitHUB RemoteRepo:
+================== 
+And Finally Pushing it into RemoteRepo,RemoteRepo is basically Shared location, all the team members can access this Repo.
+

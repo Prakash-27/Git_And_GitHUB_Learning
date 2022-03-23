@@ -1,0 +1,267 @@
+====================================================================================PART-11=============================================================================
+Git Rebase: 
+===========
+In three way merge i want to follow the fast forward merge techniqe then it will done by Git Rebase.
+
+Point to be Noted for Three Way Merge:
+======================================
+1.New Merge commit is creating.
+2.Every commit having more than one Parent commit. 
+3.And also we should resolve the conflicts manually.
+ 
+Git Rebase:
+-----------
+i)Git Rebase Internally follows Fast Forward Merge.
+
+In normal we have create master branch and child branch, also commiting in master branch Seperatly as well as commiting child branch Seperatly.
+After that we have to merge the child branch files into master branch files in master branch by using command called 'git merge branchName'.
+
+ii)But in Git Rebase Instead of Merging Child branch directly into the master branch, First we do Git Rebase and then Merge it to master branch. 
+
+ 
+Before Rebase:                                                                      
+==============                                                                        
+                   Base                   This commit is created   
+                  Commit                  once merge is done.                                                                             
+                    |                              |
+                    \/           master            \/ 
+--------        --------        --------        --------
+|  C1M |--------|  C2M |--------|  C3M |--------|Merge |
+|      |        |      |        |      |        |commit|
+--------        --------        --------        -------- 
+                   | >Here Three Way Merge will happen. 
+                   | >Both master and Child commits are Merged.
+                   | >And then the New Merge commit will created on Master Branch.
+                   | >Totally we have 6 commits in normall Three Way Merge.
+                --------        --------
+                |  C1F |--------|  C2F |
+                |      |        |      |
+                --------        --------
+
+Points to Note:
+===============
+1. In Three way Merge there is High chance of getting conflicts
+2. In Three way Merge they are having unique commit ID Based on that we can easily notice what are the change we have done in which branch.
+
+When we are want to Go for Merge:
+=================================
+1.Every time we go with the merge, with in the local repository/local  Environment.
+2.Once you merge the the child branch in master branch final code we can push in to the remote Repository. 
+3.History of the commits are maintained, for example the particular file is merged in to feature to master branch the history is maintained in the feature branch. 
+4.It is Non-Linear.
+
+Step 1:
+=======
+Git Rebase:
+===========   Feature branch on top of master branch performing command called 'git rebase master'  
+
+                            
+--------        --------        --------> master, Base commit        
+|  C1M |--------|  C2M |--------|  C3M |
+|      |        |      |        |      |        
+--------        --------        --------         
+                   |                | 
+             ------|----------------|------    --------        -------- 
+             |     |                |------|---|  C1F |--------|  C2F |
+             |     |     /-----------------|-\ |      |        |      |    new feature branch
+this file--->|  --------/       --------   |  / --------        --------
+Discarded    |  |  C1F |--------|  C2F |   |                      /\
+after execute|  |      |        |      |/--|----------------------|
+git rebase   |  --------        --------   |
+command      -------------------------------
+                     feature Branch
+
+Above diagram Explanation:
+==========================
+1.Rebase the Particular Feature branch on top of master branch.
+
+2.In master we have three commits,In feature branch we have two commits,
+when we execute the command called 'git rebase master',
+then two feature branch commits will not directly adding in to the master branch.
+
+3.When Execute the 'git rebase master' command,
+Git will create internally two  new different commit object for the feature branch on top of master branch,
+as soon as git created new commits object of feature branch then exsisting feature branch commits is discarded,
+After that the Exsisting feature branch commit files are also not changed into the new different commit object feature branch.  
+
+4.The changes for the Exisiting feature branch and new object feature branch are only changes in Commit ID's,
+both the branch commit ID's are not same,
+But rest of the things are same in both branches.
+
+
+Step 2:
+=======
+Merge feature branch to master
+command is : 'git merge feature/git merge branchName'              -->master
+                                                                   |
+--------        --------        --------        --------        -------- 
+|  C1M |--------|  C2M |--------|  C3M |--------|  C1F |--------|  C2F | 
+|      |        |      |        |      |        |      |        |      |
+--------        --------        --------        --------        --------
+                                                                   |
+                                                                   -->feature
+Points to Note:
+===============
+1. In rebase there is no chance of getting conflicts, Because we are adding on Top of master branch.
+2. In rebase it is very difficult to find what are the features are belong to which branch.
+
+
+When we are want to Go for Rebase:
+==================================
+1.Rebase only use for local environment, not recommended to push to remote repository,
+Because Mutiple developers are creating multiple features so we cant able to rebase those all file to master branch.
+2.In Rebase history of the commit is not maintained, because as soon as we created the new feature branch the Existing feature branch is Discarded.
+and new commit ID's will be created for the new created feature branch commits. 
+3.Both the branch commit ID's are not same. 
+4.It is Linear.
+5.Every commit has only one Parent commit.
+
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase
+$ git init
+Initialized empty Git repository in C:/Git Project Rebase/.git/
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)
+$ touch a.txt b.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)
+$ git add a.txt;git commit -m "C1M"
+[master (root-commit) 7c3b823] C1M
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 a.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)
+$ git add b.txt;git commit -m "C2M"
+[master e8bda00] C2M
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 b.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)
+$ git log --oneline
+e8bda00 (HEAD -> master) C2M
+7c3b823 C1M
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)
+$ git branch feature
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)
+$ git checkout feature
+Switched to branch 'feature'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (feature)
+$ git branch
+* feature
+  master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (feature)
+$ touch x.txt y.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (feature)
+$ git add x.txt;git commit -m "C1F"
+[feature 4fd76d4] C1F
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 x.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (feature)
+$ git add y.txt;git commit -m "C2F"
+[feature edd6e01] C2F
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 y.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (feature)
+$ git log --oneline
+edd6e01 (HEAD -> feature) C2F
+4fd76d4 C1F
+e8bda00 (master) C2M
+7c3b823 C1M
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (feature)
+$ git checkout master
+Switched to branch 'master'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)
+$ touch c.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)
+$ git add c.txt;git commit -m "C3M"
+[master c3fdefa] C3M
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 c.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)
+$ git log --oneline
+c3fdefa (HEAD -> master) C3M
+e8bda00 C2M
+7c3b823 C1M
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)                                   Comparing Commits of Before Rebase Commits and After Rebase Commits:
+$  git log --oneline master
+c3fdefa (HEAD -> master) C3M                                                                                     $  git log --oneline master
+e8bda00 C2M                                                                                                       c3fdefa (HEAD -> master) C3M
+7c3b823 C1M                                                                                                       e8bda00 C2M
+                                                                                                                  7c3b823 C1M
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)
+$  git log --oneline feature                                                                                     $  git log --oneline feature
+edd6e01 (feature) C2F                                                                                            edd6e01 (feature) C2F 
+4fd76d4 C1F                                                                                                      4fd76d4 C1F
+e8bda00 C2M                                                                                                      e8bda00 C2M
+7c3b823 C1M                                                                                                      7c3b823 C1M 
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)                                                   After Rebase
+$ git branch                                    
+  feature                                                                                                        $ git log --oneline master
+* master                                                                                                         c3fdefa (master) C3M
+                                                                                                                 e8bda00 C2M
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)                                                   7c3b823 C1M                               
+$ git checkout feature
+Switched to branch 'feature'                                                                                     $ git log --oneline feature
+                                                                                                                 c54dbbc (HEAD -> feature) C2F
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (feature)                                                  7a4bd9e C1F
+$ git rebase master                                                                                              c3fdefa (master) C3M
+Successfully rebased and updated refs/heads/feature.                                                             e8bda00 C2M
+                                                                                                                 7c3b823 C1M
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (feature)
+$ git log --oneline master
+c3fdefa (master) C3M
+e8bda00 C2M
+7c3b823 C1M
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (feature)
+$ git log --oneline feature
+c54dbbc (HEAD -> feature) C2F
+7a4bd9e C1F
+c3fdefa (master) C3M
+e8bda00 C2M
+7c3b823 C1M
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (feature)
+$ git checkout master
+Switched to branch 'master'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)
+$ ls
+a.txt  b.txt  c.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)
+$ git log --oneline
+c3fdefa (HEAD -> master) C3M
+e8bda00 C2M
+7c3b823 C1M
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)
+$ git merge feature
+Updating c3fdefa..c54dbbc
+Fast-forward
+ x.txt | 0
+ y.txt | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 x.txt
+ create mode 100644 y.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)
+$ git log --oneline --graph
+* c54dbbc (HEAD -> master, feature) C2F
+* 7a4bd9e C1F
+* c3fdefa C3M
+* e8bda00 C2M
+* 7c3b823 C1M

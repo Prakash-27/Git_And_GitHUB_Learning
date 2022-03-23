@@ -1,0 +1,71 @@
+====================================================================================PART-12=============================================================================
+GitHub Clone/Pull and Push:
+===========================
+
+1.GitHub is a hosting service for git repositories.
+
+2.Git is the tool, while Github is the service to use git.
+
+
+Git Clone Command:
+------------------
+git clone 'https://github.com/githubAccountName/RepositoryName.git' --> Press Enter
+
+
+Git Push Command:
+-----------------
+git push -u origin master/main --> press Enter
+
+
+How to Upload a Project in GitHub Using Git:
+--------------------------------------------
+C:\Users\Elcot> cd C:\Users\Elcot\eclipse-workspace\SampleProject
+
+C:\Users\Elcot\eclipse-workspace\SampleProject> git init
+Initialized empty Git Repository in C:\Users\Elcot\eclipse-workspace\SampleProject/.git/
+
+C:\Users\Elcot\eclipse-workspace\SampleProject> git remote add origin https://github.com/githubAccountName/RepositoryName.git
+
+C:\Users\Elcot\eclipse-workspace\SampleProject> git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <files>..." to include in what will be commited)
+        .classpath
+        .project
+        .settings/
+        pom.xml
+        src/
+        target/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+C:\Users\Elcot\eclipse-workspace\SampleProject> git add .
+
+C:\Users\Elcot\eclipse-workspace\SampleProject>git status
+On branch master
+
+No commits yet
+
+changes to be commited:
+   (use "git rm --cached <file>..." to unstage)
+         new file:     .classpath
+         new file:     .project
+(like some files are added) 
+
+C:\Users\Elcot\eclipse-workspace\SampleProject> git commit -m "My First commit in GitHub"
+[master (root-commit) 0ferc30] My First commit in Github
+10 files changed, 336 insertion(+)
+create mode 100072 .classpath
+create mode 100072 .project
+
+(like some files are commited) 
+
+C:\Users\Elcot\eclipse-workspace\SampleProject> git push -u origin master/main
+
+
+Git Pull Command:
+-----------------
+git pull origin master/main --> press Enter

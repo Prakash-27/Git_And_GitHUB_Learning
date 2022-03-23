@@ -1,0 +1,36 @@
+====================================================================================PART-3=============================================================================
+Git Commands
+-------------
+
+Git init Command:
+=================
+git init --> Which will create one local Repo on top of Project.
+
+Git StatusCommand:
+==================
+git status --> Status command will tell you that what is the status of the file which is Tracked or unTracked, commited or uncommited and So on.
+
+Git 
+
+Git add Command:
+================
+git add a.txt b.txt
+git add -a --> This will add all the files
+git add .* --> If all the Files are in txt format or any format only we use this command
+git add . ---> This will add All the Files in to the Staging area.
+
+In git some files we are already commited in to local repo but that files are modified for some reasons, then we want to add those files again for staging area.
+In this kind of senario we doesn't want to use (command like git add a.txt b.txt), Instead of that we can use the command which can add all the files in the local Repo
+and also it can commit it. ((Commands is) git commit -a -m "Both files are Modified...")--> This command is only for already tracked files in git.    
+
+Git log Command:
+================
+git log --> will tell you how many commits you have done Before in the Project and it will give Detailed Information About Logs.
+Every commit git will generate one code that was code also shown in this command Execute.
+Author name , Date Time Month Day are also shown in this Command Execute.
+and what are the commits we have commited also shown in this.  
+
+Git Config Command:
+===================
+git config --global user.email "ABCD@123gmail.com"
+git config --global user.name "ABCD"

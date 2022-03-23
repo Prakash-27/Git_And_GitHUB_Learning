@@ -1,0 +1,381 @@
+====================================================================================PART-9=============================================================================  
+Merging:
+========
+
+1.Fast-Forward Merge: It is a Linear Commit.
+---------------------
+
+                         --------           --------                       -------- Merged(this is a Latest commit HEAD)
+         master branch   | C1M  |-----------| C2M  |-----------------------| C2F  |--------------
+                         |      |           |      |                       |      |     
+                         --------           --------                       --------  /\
+                                               |                               |     |  M
+                                               |                               |     |  e
+                                               |                               |     |  r 
+                                               |                               |     |  g
+                                               |         --------          --------  |  e
+                  Child branch(Feature branch) |---------| C1F  |----------| C2F  |
+                                                         |      |          |      | 
+                                                         --------          --------
+
+In Fast Forward Merge each commit have only one Parent commit. That why this is a Linear Commit.
+
+Points to be Noted in Fast-Forward Merge:
+=========================================
+Changes happened in the child branch only.
+If we written any code in child branches then it is merged into master branch There will be chance for Confilicts in the code.
+If we don't have codes in child branch files then it will merged into master branch there is no chance for Confilicts.
+
+Master Branch:
+==============
+Create files a.txt b.txt and then commit it to the master branch.
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging
+$ git init
+Initialized empty Git repository in C:/Git Project For Merging/.git/
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ touch a.txt b.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git add a.txt;git commit -m "C1M"
+[master (root-commit) c05d1d4] C1M
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 a.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git add b.txt;git commit -m "C2M"
+[master 7a48c9f] C2M
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 b.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ ls
+a.txt  b.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git ls-files
+a.txt
+b.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git log --oneline
+7a48c9f (HEAD -> master) C2M
+c05d1d4 C1M
+
+Child Branch(Feature Branch):
+============================= 
+Now Create a New Branch and name it to Feature then the branch name is called Feature Branch.
+Then All the files in the master branch is inherited into the (Child Branch) Feature branch so the a.txt b.txt is also added in Feature branch. 
+After creating the Feature branch creating some file x.txt y.txt in the feature branch and then add into feature branch then commit it to that branch. 
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git branch feature
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git branch
+  feature
+* master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git checkout feature
+Switched to branch 'feature'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (feature)
+$ git branch
+* feature
+  master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (feature)
+$ touch x.txt y.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (feature)
+$ git add x.txt;git commit -m "C1F"
+[feature e05a4c4] C1F
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 x.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (feature)
+$ git add y.txt;git commit -m "c2F"
+[feature 68dc317] c2F
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 y.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (feature)
+$ ls
+a.txt  b.txt  x.txt  y.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (feature)
+$ git log --oneline
+68dc317 (HEAD -> feature) c2F
+e05a4c4 C1F
+7a48c9f (master) C2M
+c05d1d4 C1M
+
+Whenever we are going to merge the code to master branch we have to switch to child branch to master branch and then we can merge the code.
+Also the merging is done in the master branch we have to execute the 'merge command' in the master branch.
+To Merge the branch:
+====================
+Command is: git merge branchName
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (feature)
+$ git checkout master
+Switched to branch 'master'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git branch
+  feature
+* master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git merge feature
+Updating 7a48c9f..68dc317
+Fast-forward
+ x.txt | 0
+ y.txt | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 x.txt
+ create mode 100644 y.txt
+
+2)Three-Way Merge:  It is Non-Linear Commit.
+==================                    
+
+                                          Xyz.txt                           -------------
+                                          -------                           | Conflicts | 
+                                          ----                              -----\/------     
+                         --------           --------          --------           /\ 
+         master branch   | C1M  |-----------| C2M  |----------| C3M  |-------------------------------------
+                         |      |           |      |          |      |            | 
+                         --------           --------          --------            |
+                                               |                                  |  
+                                               |                                  |  
+                                               |                                  |  
+                                               |                                  |  
+                                               |         --------             --------  
+                  Child branch(Feature branch) |---------| C1F  |-------------| C2F  |
+                                                         |      |             |      | 
+                                                         --------             --------
+
+                                                    Xyz.txt
+                                                    -------  
+                                                    ----
+                                                    ------  1.(Here Some codes are Inherited from master branch to feature branch if any changes are there in Xyz.txt file in master branch,
+                                                    ---      is Again some code is add or modified by the Freature Branch then commit it to master,
+                                                             when we merge in to master branch definitly have Conflits in their.)
+
+                                                            2.(After merging conflict codes in master we can handle only manually to resolve the code.)
+  
+                                                           3.(Whether the new files is created after the feature branch is created mean,
+                                                              Then that the new files are merged to master means it will not have conflicts)
+
+                                                                                         
+                                                                                       Head
+                                                                                        |          
+                                                                                   ------------
+                                                                                   |  master  | 
+                                                                                   |    |     |
+                                                                                   |  merge   |
+                                                                                   |  commit  | 
+                         --------           --------          --------             ------------  
+         master branch   | C1M  |-----------| C2M  |----------| C3M  |------------------|
+                         |      |           |      |          |      |                /
+                         --------           --------          --------               / 
+                                               |                                    /
+                                               |                                   / 
+                                               |                                  /  
+                                               |                                 /   
+                                               |         --------             --------  
+                  Child branch(Feature branch) |---------| C1F  |-------------| C2F  |
+                                                         |      |             |      | 
+                                                         --------             --------
+
+In Three Way Merging Master commits and Child branch commits are there when we are merging master and child branch commits One Extra commit will be created on top of master that is Merge commit.
+So In Three Way Merge there are chances to have one Commit having multiple parent commit. That why this is a Non-Linear Commit.
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging
+$ git init
+Initialized empty Git repository in C:/Git Project For Merging/.git/
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ touch a.txt b.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git add a.txt;git commit -m "C1M"
+[master (root-commit) 8eb3ec7] C1M
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 a.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git add b.txt;git commit -m "C2M"
+[master de8d824] C2M
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 b.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git log --oneline
+de8d824 (HEAD -> master) C2M
+8eb3ec7 C1M
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git branch
+* master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git branch feature
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git branch
+  feature
+* master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git checkout feature
+Switched to branch 'feature'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (feature)
+$ git branch
+* feature
+  master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (feature)
+$ touch x.txt y.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (feature)
+$ git add x.txt;git commit -m "C1F"
+[feature 193ae33] C1F
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 x.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (feature)
+$ git add y.txt;git commit -m "C2F"
+[feature da5fe11] C2F
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 y.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (feature)
+$ git log --oneline
+da5fe11 (HEAD -> feature) C2F
+193ae33 C1F
+de8d824 (master) C2M
+8eb3ec7 C1M
+
+In Master --> we have 2 files and 2 commits
+In Feature--> we have 4 files and 4 commits
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (feature)
+$ git checkout master
+Switched to branch 'master'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git branch
+  feature
+* master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ ls
+a.txt  b.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git log --oneline
+de8d824 (HEAD -> master) C2M
+8eb3ec7 C1M
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ touch c.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git add c.txt;git commit -m "C3M"
+[master 6da30ed] C3M
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 c.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ ls
+a.txt  b.txt  c.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git log --oneline
+6da30ed (HEAD -> master) C3M
+de8d824 C2M
+8eb3ec7 C1M
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git branch
+  feature
+* master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git merge feature
+
+Merge branch 'feature'
+# Please enter a commit message to explain why this merge is necessary,
+# especially if it merges an updated upstream into a topic branch.
+#
+# Lines starting with '#' will be ignored, and an empty message aborts
+# the commit.
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+C:/Git Project For Merging/.git/MERGE_MSG [unix] (02:35 22/03/2022)      1,1 All
+"C:/Git Project For Merging/.git/MERGE_MSG" [unix] 6L, 249B
+
+Merge branch 'feature'
+# Please enter a commit message to explain why this merge is necessary,
+# especially if it merges an updated upstream into a topic branch.
+#
+# Lines starting with '#' will be ignored, and an empty message aborts
+# the commit.
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+C:/Git Project For Merging/.git/MERGE_MSG [unix] (02:35 22/03/2022)      1,1 All
+:wq!
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git merge feature
+Merge made by the 'ort' strategy.
+ x.txt | 0
+ y.txt | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 x.txt
+ create mode 100644 y.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git log --oneline
+388dc53 (HEAD -> master) Merge branch 'feature'
+6da30ed C3M
+da5fe11 (feature) C2F
+193ae33 C1F
+de8d824 C2M
+8eb3ec7 C1M
+
+Points to be Noted in Three-way Merging:
+========================================
+1.Changes happend in master and child branches.
+2.So there is chance of conflicts.

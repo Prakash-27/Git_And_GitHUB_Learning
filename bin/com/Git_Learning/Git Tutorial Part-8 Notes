@@ -1,0 +1,241 @@
+====================================================================================PART-8=============================================================================
+Git Branching Commands:
+-----------------------
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project
+$ git init
+Initialized empty Git repository in C:/Git Project/.git/
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ touch a.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ ls
+a.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git add a.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git commit -m "a.txt"
+[master (root-commit) 0bffd6c] a.txt
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 a.txt
+
+1)Git Branch Command:
+===================
+git branch --> is the command to view available branches in command.
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git branch
+* master     (* --> Here '*' indicates Active branch.) 
+
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+2)Create new Branch:
+====================
+git branch branchName --> to create a new branch for our own purpose.
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git branch br1
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git branch
+  br1
+* master
+
+3)Switch to from one branch to another branch:
+==============================================
+git checkout --> discard unstaged changes in working directory.
+git checkout branch_name
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git checkout br1
+Switched to branch 'br1'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br1)
+$ git branch
+* br1
+  master
+
+4)Create new branch & switching to that branch:
+===============================================
+git checkout -b branchname
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br1)
+$ git checkout -b br2
+Switched to a new branch 'br2'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br2)
+$ git branch
+  br1
+* br2
+  master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br2)
+$ git branch
+  br1
+* br2
+  master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br2)
+$ git checkout master
+Switched to branch 'master'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git branch
+  br1
+  br2
+* master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ ls
+a.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ touch b.txt c.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git add b.txt;git commit -m "b.txt"
+[master fdc6d65] b.txt
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 b.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$  git add c.txt;git commit -m "c.txt"
+[master 59071aa] c.txt
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 c.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git ls-files
+a.txt
+b.txt
+c.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git log --oneline
+59071aa (HEAD -> master) c.txt
+fdc6d65 b.txt
+0bffd6c (br2, br1) a.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ ls
+a.txt  b.txt  c.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git checkout br1
+Switched to branch 'br1'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br1)
+$ ls
+a.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br1)
+$ git log --oneline
+0bffd6c (HEAD -> br1, br2) a.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br1)
+$ git branch
+* br1
+  br2
+  master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br1)
+$ touch x.txt y.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br1)
+$ git add x.txt;git commit -m "x.txt"
+[br1 63abe31] x.txt
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 x.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br1)
+$ git add y.txt;git commit -m "y.txt"
+[br1 353c410] y.txt
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 y.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br1)
+$ ls
+a.txt  x.txt  y.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br1)
+$ git checkout master
+Switched to branch 'master'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ ls
+a.txt  b.txt  c.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git branch
+  br1
+  br2
+* master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git checkout br1
+Switched to branch 'br1'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br1)
+$ ls
+a.txt  x.txt  y.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br1)
+$ git checkout master
+Switched to branch 'master'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ ls
+a.txt  b.txt  c.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ touch d.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git add d.txt;git commit -m "d.txt"
+[master e851b34] d.txt
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 d.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ ls
+a.txt  b.txt  c.txt  d.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git checkout br1
+Switched to branch 'br1'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br1)
+$ git branch
+* br1
+  br2
+  master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br1)
+$ ls
+a.txt  x.txt  y.txt
+
+Few Points to Noted in Branching:
+=================================
+1)Once you create any branch what are all files you have commits
+which are already done in the parent branch which will be inherited in to child branch.
+
+2)In the child branch what ever we created In the child branch we can create any new files also we can change exsisting files, 
+also do n Number of commits in the child branchs which is directly will not impact on the main branch.
+
+3)Here all branchs are isolated, every branch is independent.
+
+4)uses of branching concept parallel development will happen,
+without touching the existing code or without interrupting the existing process we can create do parallel development,
+and also code bases very cleanly maintained in the master branch, So we will not able to mess up the code which is already available in the master branch.

@@ -1,0 +1,66 @@
+====================================================================================PART-6=============================================================================
+Git Commands:
+=============
+git checkout command
+
+we can use checkout command to discard unstaged changes in the tracked files of working directory.
+Checkout command only work for tracked files.
+
+1) This checkout command only work for Working Directory.
+2) To discard unstaged changes (The changes which are not added to staging area)
+3) In the Tracked Files (the file which are already added to staging area/Local Repo or commit)
+
+eg:
+
+creating Sample Project For Checkout command in C Drive.
+And creating new file using Unix Terminal.
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/New Sample Project For Checkout command
+$ vim file1.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/New Sample Project For Checkout command
+$ git init
+Initialized empty Git repository in C:/New Sample Project For Checkout command/.git/
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/New Sample Project For Checkout command (master)
+$ git add .
+warning: LF will be replaced by CRLF in file1.txt.
+The file will have its original line endings in your working directory
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/New Sample Project For Checkout command (master)
+$ git commit -m "CheckOut command"
+[master (root-commit) cfa2b17] CheckOut command
+ 1 file changed, 2 insertions(+)
+ create mode 100644 file1.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/New Sample Project For Checkout command (master)
+$ cat file1.txt
+This is a First Line    --->(This lines are called tracked files)
+This is a Second Line
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/New Sample Project For Checkout command (master)
+$ vim file1.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/New Sample Project For Checkout command (master)
+$ cat file1.txt
+This is a First Line
+This is a Second Line
+This is a Third Line
+This is a Fourth Line
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/New Sample Project For Checkout command (master)
+$ git checkout -- file1.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/New Sample Project For Checkout command (master)
+$ cat file1.txt
+This is a First Line
+This is a Second Line
+
+Checkout command is used for only tracked file not for untracked file:
+----------------------------------------------------------------------
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/New Sample Project For Checkout command (master)
+$ vim file2.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/New Sample Project For Checkout command (master)
+$ git checkout -- file2.txt
+error: pathspec 'file2.txt' did not match any file(s) known to git

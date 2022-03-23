@@ -1,0 +1,162 @@
+====================================================================================PART-5=============================================================================
+Git Commands:
+=============
+git rm filename.Extension: The Specific file which we mentioned will be remove from working directory and Staging area.
+--------------------------
+
+git rm -r . : It will remove all the files from working directory and Staging area.  
+-------------
+
+Working Directory             Staging           Local Repository
+-----------------        -----------------     ----------------- 
+|  |File1.txt|  |        |  |File1.txt|  |     |  |File1.txt|  | 
+|  |File2.txt|  |        |  |File2.txt|  |     |  |File2.txt|  |
+|  |File3.txt|  |        |  |File3.txt|  |     |  |File3.txt|  |
+|               |        |               |     |               |
+-----------------        -----------------     -----------------
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ vim file1.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ vim file2.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ vim file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ ls -->(this command will show what are the files are in Working Directory)
+file1.txt  file2.txt  file3.txt  index.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ git init
+Reinitialized existing Git repository in C:/Sample Project For Git/.git/
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ git add .
+warning: LF will be replaced by CRLF in index.txt.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in file1.txt.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in file2.txt.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in file3.txt.
+The file will have its original line endings in your working directory
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$  git commit -m "3 files.txt is commit in first round"
+[master a4b3cae] 3 files.txt is commit in first round
+ 4 files changed, 4 insertions(+)
+ create mode 100644 file1.txt
+ create mode 100644 file2.txt
+ create mode 100644 file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ git ls-files--->(This command will show the what are the files are in Staging Area)
+file1.txt
+file2.txt
+file3.txt
+index.txt
+
+Requirement1:
+=============
+Remove files from both staging & working directory.
+git rm file.extension
+
+eg:
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ git rm index.txt
+rm 'index.txt'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ ls
+file1.txt  file2.txt  file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ git ls-files
+file1.txt
+file2.txt
+file3.txt
+
+Requirement2:
+=============
+Remove files from only staging Area.
+git rm --cached file.extension
+
+eg:
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ git rm --cached file2.txt
+rm 'file2.txt'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ ls
+file1.txt  file2.txt  file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ git ls-files
+file1.txt
+file3.txt
+
+Requirement3:
+=============
+Remove files from only Working Directory.
+rm file.extension
+
+eg:
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ ls
+file1.txt  file2.txt  file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ git ls-files
+file1.txt
+file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ rm file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ ls
+file1.txt  file2.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ git ls-files
+file1.txt
+file3.txt
+
+Requirement4:
+=============
+Remove all files from only Working Directory.
+git rm -r .
+
+eg:
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ ls
+file1.txt  file2.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ git ls-files
+file1.txt
+file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ git rm -r .
+rm 'file1.txt'
+rm 'file3.txt'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ ls
+file2.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ git ls-files
+Empty
