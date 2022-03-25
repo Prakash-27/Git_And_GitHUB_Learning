@@ -1,0 +1,2454 @@
+====================================================================================PART-1=============================================================================
+What is Git?                          
+-------------
+Git is Distributed Version Control System.
+
+Git Architecture:                                                       |
+-----------------       This part is not require Network.               | This part require some Network.
+-------------           -------------           --------------   push   |-------------- 
+| Working   |   add     |  Staging  |   commit  |    Git     |--------->||   GitHUB   |
+| Directory |---------->|     or    |---------->|   Local    |clone/pull||   Remote   |
+| or Space  |           |   Index   |           | Repository |<---------|| Repository |
+-------------           -------------           --------------          |--------------
+UnTracked Files         Tracked Files           Commited Files          | Remote Files
+---------------------------------------------------------------         |
+     |                        |                       |   
+     --------------------------------------------------
+   This three Part are in Local Machine/Computer we using.
+      
+WorkingDirectories:
+====================
+What are the file currently we are working in IDE are Present in WorkingDirectories.
+Staging:
+========
+Staging is a Virtual Layer In Between WorkingDirectories and LocalRepo.
+Before we are commiting in to localRepo we have to add those files in Staging.
+LocalRepo:
+==========
+And From there we can commit it into Local Repo.
+GitHUB RemoteRepo:
+================== 
+And Finally Pushing it into RemoteRepo,RemoteRepo is basically Shared location, all the team members can access this Repo.
+   
+====================================================================================PART-2=============================================================================
+
+Git Download and Installation Configurations
+
+Create GitHUB Account. 
+
+====================================================================================PART-3=============================================================================
+
+Git Commands
+-------------
+Git init Command:
+=================
+git init --> Which will create one local Repo on top of Project.
+
+Git StatusCommand:
+==================
+git status --> Status command will tell you that what is the status of the file which is Tracked or unTracked, commited or uncommited and So on.
+
+Git 
+
+Git add Command:
+================
+git add a.txt b.txt
+git add -a --> This will add all the files
+git add .* --> If all the Files are in txt format or any format only we use this command
+git add . ---> This will add All the Files in to the Staging area.
+
+In git some files we are already commited in to local repo but that files are modified for some reasons, then we want to add those files again for staging area.
+In this kind of senario we doesn't want to use (command like git add a.txt b.txt), Instead of that we can use the command which can add all the files in the local Repo
+and also it can commit it. ((Commands is) git commit -a -m "Both files are Modified...")--> This command is only for already tracked files in git.    
+
+Git log Command:
+================
+git log --> will tell you how many commits you have done Before in the Project and it will give Detailed Information About Logs.
+Every commit git will generate one code that was code also shown in this command Execute.
+Author name , Date Time Month Day are also shown in this Command Execute.
+and what are the commits we have commited also shown in this.  
+
+Git Config Command:
+===================
+git config --global user.email "ABCD@123gmail.com"
+git config --global user.name "ABCD"
+
+====================================================================================PART-4=============================================================================
+
+Git diff Command: 
+=================
+git diff---> Is use to Compare the files in Version Control System.
+eg:between WorkingDirectories and Staging areas 
+
+WorkingDirectories---->Staging---->LocalRepo---->RemoteRepo
+
+i)In this we are creating the Folder (SampleProject For Git) in C Drive in the Folder we are Right clicking and on that Selecting (Git Bash Here). 
+ii)Then we are Typing Unix commad to create the .txt File on that (SampleProject For Git) Folder location.
+$ vim index.txt --> press Enter.
+In this Unix Terminal Press 'i' button to insert value.
+In this now we are Inserting Animals.
+
+Animals
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+index.txt [unix] (08:30 20/03/2022)                                                2,5 All
+-- INSERT --
+
+After inserting scentence press 'Esc' button and type last :wq! command, to force write to file even if it does not have return permission. 
+
+Animals
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+index.txt [unix] (08:30 20/03/2022)                                                2,3 All
+:wq!
+
+iii)Then Unix Terminal will Appear On that we want to type some Sentence (for typing press 'i' Button(--Insert--) to type some Sentence, when you finished typing (press 'Esc'))
+when we press Esc button the Cursor come to Where we See --Insert-- before typing.
+iv)Then we want to save the file and exit from Unix terminal:
+=============================================================
+1.Press Esc button to go to the Command mode and ':' appears.
+2.Type: w to save the file.
+3.Type: wq to save and quit file.
+4.Type: q! to  quit without saving.
+5.Type: wq! to force write to file even if it does not have return permission.
+6.Type: x to write and quit and this command is Short for :wq
+7.Type: qa to quit all.
+
+v)The file I have written is animal in index.txt, that was stored in Working Directory.
+
+Working Directory          Staging              Local Repository
+-------------           -------------           -------------- 
+|  -------- |   add     |           |   commit  |            |
+|  |animals||---------->|           |---------->|            |
+|  -------- |           |           |           |            |
+-------------           -------------           --------------          
+vi)After Saving file from unix Terminal, then create local repo in the (SampleProject For Git) Folder location using 'git init' command.
+$ git init
+Initialized empty Git repository in C:/Sample Project For Git/.git/
+ 
+vii)After the git Initialized empty Git repository in local repo, we have to Staging the file to next level by add the files using (git add .) this will add all the files in local repo.
+$ git add .
+warning: LF will be replaced by CRLF in index.txt.
+The file will have its original line endings in your working directory
+
+viii)After adding the file check the git status using Git command (git status):
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   index.txt
+
+ix)After Staging the file is moved to Staging.
+
+Working Directory          Staging              Local Repository
+-------------           -------------           -------------- 
+|  -------- |   add     | --------  |   commit  |            |
+|  |animals||---------->| |animals| |---------->|            |
+|  -------- |           | --------  |           |            |
+-------------           -------------           -------------- 
+
+x)After that again we are modifing/adding another (words like Birds) in index.txt file in unix Terminal.
+$ vim index.txt --> press Enter.
+In this Unix Terminal Press 'i' button to insert value.
+In this now we are Inserting Birds.
+
+Animals
+Birds
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+index.txt [unix] (08:30 20/03/2022)                                                2,5 All
+-- INSERT --
+
+After inserting scentence press Esc button and type last :wq! command, to force write to file even if it does not have return permission. 
+
+Animals
+Birds
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+index.txt [unix] (08:30 20/03/2022)                                                2,3 All
+:wq!
+
+After change in file check the Git Status using git status command.
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   index.txt
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   index.txt
+
+Here Birds in Working Directory only not in Staging Area.
+
+Requirement1:
+=============
+To see difference in Files Content Between Working Directory Staging Area.
+
+We have to see the Difference Between Working Directory Staging Area using---> (git diff index.txt).
+
+$ git diff index.txt
+
+warning: LF will be replaced by CRLF in index.txt.
+The file will have its original line endings in your working directory
+diff --git a/index.txt b/index.txt
+index fcb5845..1f16f36 100644
+--- a/index.txt
++++ b/index.txt
+@@ -1 +1,2 @@
+-animals
++Animals
++Birds
+
+Lets take Some Commands from Above:
+===================================
+diff --git a/index.txt b/index.txt
+index fcb5845..1f16f36 100644
+--- a/index.txt
++++ b/index.txt
+@@ -1 +1,2 @@
+-animals
++Animals
++Birds
+
+In Git Staging is --->(Source Location).
+a/index.txt --> representing Source (Staging Area)
+
+Working Directory is -->(Target or Destination Location).
+b/index.txt --> representing Target or Destination (Working Directory)
+
+fcb5845---> Hash of file content from Source/Staging.
+1f16f36---> Hash of file content from Destination/WorkSpace or WorkingDirectory.
+
+100644---> Git file Mode. 
+           
+100---> It Represents type of the files.(In our case we are using .txt file so 100 is for that) Some Hash codes are there for some type of files
+644---> Representing File Permission.(Git follows Linux Commands) Here 6-read write, 4-read, 4-read. 644-> rw-r-r
+4->read
+2->write
+1->execute
+
+And we have Three type of users in Linux--> Group,Owners,Users 
+
+6->4+2=6 -> that means read and write permission for Groups(it means 4->Read 2->Write = Read + Write = Owners)
+
+rw-r-r-->(middle r is Groups, last r is Others Both the middle and last r-r is other) So groups and others are having Read permission.
+Both rw--> is owners, So owner is representing Read Write permission.
+
+--- a/index.txt --> Source file (--- is Missing) missing some lines (Staging)
+Here in below diagram Represents Working Directory have Birds but in Staging area Birds is missing so that is Represented in Above line.
+
+Working Directory          Staging              Local Repository
+-------------           -------------           -------------- 
+|  |animals||   add     | --------  |   commit  |            |
+|  |Animals||---------->| |Animal|  |---------->|            |
+|  |Birds  ||           | |      |  |           |            |            
+|  ---------|           | --------  |           |            |
+-------------           -------------           --------------
+
++++ b/index.txt ---> New lines added in Destination file (working directory).
+In Above Diagram Represents After adding Animals in the Staging area But then also it have some Words called Birds in Working Directory, That is reprenting (++++). 
+
+ animals--->  If any line Prefixed with Space means it is UnChanged.
++Animals--->  If any line Prefixed with + means it is added in Destination Copy.
+-animals--->  If any line Prefixed with - means it is removed from Destination Copy.
+
+Requirements2:
+==============
+To see difference in Files Content Between Working Directory to last commit.
+
+$ git commit -m "first commit file contains 1 line"
+[master (root-commit) c44f391] first commit file contains 1 line
+ 1 file changed, 1 insertion(+)
+ create mode 100644 index.txt
+
+Working Directory          Staging              Local Repository
+-------------           -------------           -------------- 
+|  |animals||   add     | --------- |   commit  | ---------  |
+|  |Animals||---------->| |Animals| |---------->| |Animals|  |
+|  |Birds  ||           | |       | |           | |       |  |            
+|  ---------|           | --------- |           | ---------  |
+-------------           -------------           --------------
+
+Requirements3:
+==============
+To see difference in Files Content Between Working Directory to Local Repo.
+
+$ vim index.txt
+Animals
+Birds
+Fishes
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+index.txt [unix] (00:21 21/03/2022)                                      3,6 All
+-- INSERT --
+
+Animals
+Birds
+Fishes
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+index.txt [unix] (00:21 21/03/2022)                                      3,5 All
+:wq!
+
+Working Directory          Staging              Local Repository
+-------------           -------------           -------------- 
+|  |animals||   add     | --------- |   commit  | ---------  |
+|  |Animals||---------->| |Animals| |---------->| |Animals|  |
+|  |Birds  ||           | |       | |           | |       |  |            
+|  |Fishes ||           | --------- |           | ---------  |
+-------------           -------------           --------------
+
+Latest commit or Last Commit refered HEAD Keyword.
+--------------------------------------------------
+
+$ git diff HEAD index.txt
+warning: LF will be replaced by CRLF in index.txt.
+The file will have its original line endings in your working directory
+diff --git a/index.txt b/index.txt
+index fcb5845..062f117 100644
+--- a/index.txt
++++ b/index.txt
+@@ -1 +1,3 @@
+-animals
++Animals
++Birds
++Fishes
+
+Requirements4:
+==============
+To see difference in Files Content Between Staged Copy to (Local Repo) Last Commit.
+
+$ git add .
+warning: LF will be replaced by CRLF in index.txt.
+The file will have its original line endings in your working directory
+
+To Check Last commit to Staged Copy the Git Commad is:
+ 
+git diff --staged HEAD index.txt
+
+diff --git a/index.txt b/index.txt
+index fcb5845..062f117 100644
+--- a/index.txt
++++ b/index.txt
+@@ -1 +1,3 @@
+-animals
++Animals
++Birds
++Fishes
+
+Working Directory          Staging              Local Repository
+-------------           -------------           -------------- 
+|  |animals||   add     | --------  |   commit  | ---------  |
+|  |Animals||---------->| |Animal|  |---------->| |Animals|  |
+|  |Birds  ||           | |Birds |  |           | |       |  |            
+|  |Fishes ||           | |Fishes|  |           | |       |  |
+-------------           -------------           --------------
+
+Requirements5:
+==============
+To see difference in Files Content Between Specific Commit to Working Directory.
+
+$ git commit -m "Second commit file contains 3 line"
+[master 296cfca] Second commit file contains 3 line
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+Working Directory          Staging              Local Repository
+-------------           -------------           -------------- 
+|  |animals||   add     | --------  |   commit  | ---------  |
+|  |Animals||---------->| |Animal|  |---------->| |Animals|  |
+|  |Birds  ||           | |Birds |  |           | |Birds  |  |            
+|  |Fishes ||           | |Fishes|  |           | |Fishes |  |
+-------------           -------------           --------------
+
+Now I have to compare the Last commit to Previous Commit.
+
+Now I also add Trees to the Working Directory.
+$ vim index.txt
+
+Animals
+Birds
+Fishes
+Trees
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+index.txt [unix] (01:03 21/03/2022)                                      4,5 All
+-- INSERT --
+
+
+Animals
+Birds
+Fishes
+Trees
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+index.txt[+] [unix] (00:29 21/03/2022)                                   4,5 All
+:wq!
+
+Working Directory          Staging              Local Repository
+-------------           -------------           -------------- 
+|  |animals||   add     | --------  |   commit  | ---------  |
+|  |Animals||---------->| |Animal|  |---------->| |Animals|  | Second commit file contains 3 line
+|  |Birds  ||           | |Birds |  |           | |Birds  |  |            
+|  |Fishes ||           | |Fishes|  |           | |Fishes |  |
+|  |Trees  ||           | |      |  |           | |       |  | 
+-------------           -------------           | ---------  |
+                                                | ---------  |
+                                                | |Animals|  |  
+                                                | |Birds  |  | First commit file contains 1 line
+                                                | |       |  |
+                                                | ---------  |
+                                                --------------   
+
+To Compare First commit to Second commit, Git commands are to execute is :
+
+$ git log --oneline
+296cfca (HEAD -> master) Second commit file contains 3 line
+
+c44f391 first commit file contains 1 line
+
+Git Commit ID are Generated by using: git log --oneline
+Git Latest commit (HEAD -> master) ID ---> 296cfca
+Git old commit ID ---> c44f391
+
+Now we want to compare the commit by commit ID.
+
+(comparing first commit ID Using git diff c44f391 index.txt)
+
+git diff c44f391 index.txt (This will compare File in Working Directory and Local Repo, First commit file contains 1 line)
+warning: LF will be replaced by CRLF in index.txt.
+The file will have its original line endings in your working directory
+diff --git a/index.txt b/index.txt
+index fcb5845..309020a 100644
+--- a/index.txt
++++ b/index.txt
+@@ -1 +1,4 @@
+-animals
++Animals
++Birds
++Fishes
++Trees
+
+Requirements6:
+==============
+To see difference in Files Content Between Specific Commit to Staging Area.
+
+git diff --staged c44f391
+
+diff --git a/index.txt b/index.txt
+index fcb5845..062f117 100644
+--- a/index.txt
++++ b/index.txt
+@@ -1 +1,3 @@
+-animals
++Animals
++Birds
++Fishes
+ 
+Working Directory          Staging              Local Repository
+-------------           -------------           -------------- 
+|  |animals||   add     | --------  |   commit  | ---------  |
+|  |Animals||---------->| |Animal|  |---------->| |Animals|  | Second commit file contains 3 line
+|  |Birds  ||           | |Birds |  |           | |Birds  |  |            
+|  |Fishes ||           | |Fishes|  |           | |Fishes |  |
+|  |Trees  ||           | |      |  |           | |       |  | 
+-------------           -------------           | ---------  |
+                                                | ---------  |
+                                                | |animals|  |  
+                                                | |       |  | First commit file contains 1 line
+                                                | |       |  |
+                                                | ---------  |
+                                                --------------   
+
+Requirements7:
+==============
+To see difference in Files Content Between 2 Specificed Commit.
+
+comparing by the Commit ID 
+
+git diff 296cfca c44f391 index.txt
+
+diff --git a/index.txt b/index.txt
+index 062f117..fcb5845 100644
+--- a/index.txt
++++ b/index.txt
+@@ -1,3 +1 @@
+-Animals
+-Birds
+-Fishes
++animals
+
+Working Directory          Staging              Local Repository
+-------------           -------------           -------------- 
+|  |animals||   add     | --------  |   commit  | ---------  |
+|  |Animals||---------->| |Animal|  |---------->| |Animals|  | Second commit file contains 3 line
+|  |Birds  ||           | |Birds |  |           | |Birds  |  |            
+|  |Fishes ||           | |Fishes|  |           | |Fishes |  |
+|  |Trees  ||           | |      |  |           | |       |  | 
+-------------           -------------           | ---------  |
+                                                | ---------  |
+                                                | |animals|  |  
+                                                | |       |  | First commit file contains 1 line  
+                                                | |       |  |
+                                                | ---------  |
+                                                --------------   
+
+Requirements8:
+==============
+To see difference in Content Between 2 Branches.
+
+If we have some Branch means like -->Master Branch
+                                  -->Test Branch
+
+Git Command to compare 2 Branches: git diff master test
+
+(It Shows all differences between master branch and test branch)    
+
+Requirements9:
+==============
+To see difference in Content Between Local and Remote Repositories.
+
+Git Command to compare Local and Remote Repositories: git diff master origin/master
+
+====================================================================================PART-5=============================================================================
+Git Commands:
+=============
+git rm filename.Extension: The Specific file which we mentioned will be remove from working directory and Staging area.
+--------------------------
+
+git rm -r . : It will remove all the files from working directory and Staging area.  
+-------------
+
+Working Directory             Staging           Local Repository
+-----------------        -----------------     ----------------- 
+|  |File1.txt|  |        |  |File1.txt|  |     |  |File1.txt|  | 
+|  |File2.txt|  |        |  |File2.txt|  |     |  |File2.txt|  |
+|  |File3.txt|  |        |  |File3.txt|  |     |  |File3.txt|  |
+|               |        |               |     |               |
+-----------------        -----------------     -----------------
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ vim file1.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ vim file2.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ vim file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ ls -->(this command will show what are the files are in Working Directory)
+file1.txt  file2.txt  file3.txt  index.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ git init
+Reinitialized existing Git repository in C:/Sample Project For Git/.git/
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ git add .
+warning: LF will be replaced by CRLF in index.txt.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in file1.txt.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in file2.txt.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in file3.txt.
+The file will have its original line endings in your working directory
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$  git commit -m "3 files.txt is commit in first round"
+[master a4b3cae] 3 files.txt is commit in first round
+ 4 files changed, 4 insertions(+)
+ create mode 100644 file1.txt
+ create mode 100644 file2.txt
+ create mode 100644 file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ git ls-files--->(This command will show the what are the files are in Staging Area)
+file1.txt
+file2.txt
+file3.txt
+index.txt
+
+Requirement1:
+=============
+Remove files from both staging & working directory.
+git rm file.extension
+
+eg:
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ git rm index.txt
+rm 'index.txt'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ ls
+file1.txt  file2.txt  file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ git ls-files
+file1.txt
+file2.txt
+file3.txt
+
+Requirement2:
+=============
+Remove files from only staging Area.
+git rm --cached file.extension
+
+eg:
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ git rm --cached file2.txt
+rm 'file2.txt'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ ls
+file1.txt  file2.txt  file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ git ls-files
+file1.txt
+file3.txt
+
+Requirement3:
+=============
+Remove files from only Working Directory.
+rm file.extension
+
+eg:
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ ls
+file1.txt  file2.txt  file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ git ls-files
+file1.txt
+file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ rm file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ ls
+file1.txt  file2.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ git ls-files
+file1.txt
+file3.txt
+
+Requirement4:
+=============
+Remove all files from only Working Directory.
+git rm -r .
+
+eg:
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ ls
+file1.txt  file2.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ git ls-files
+file1.txt
+file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ git rm -r .
+rm 'file1.txt'
+rm 'file3.txt'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ ls
+file2.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Sample Project For Git (master)
+$ git ls-files
+Empty
+
+====================================================================================PART-6=============================================================================
+Git Commands:
+=============
+git checkout command
+
+we can use checkout command to discard unstaged changes in the tracked files of working directory.
+Checkout command only work for tracked files.
+
+1) This checkout command only work for Working Directory.
+2) To discard unstaged changes (The changes which are not added to staging area)
+3) In the Tracked Files (the file which are already added to staging area/Local Repo or commit)
+
+eg:
+
+creating Sample Project For Checkout command in C Drive.
+And creating new file using Unix Terminal.
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/New Sample Project For Checkout command
+$ vim file1.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/New Sample Project For Checkout command
+$ git init
+Initialized empty Git repository in C:/New Sample Project For Checkout command/.git/
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/New Sample Project For Checkout command (master)
+$ git add .
+warning: LF will be replaced by CRLF in file1.txt.
+The file will have its original line endings in your working directory
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/New Sample Project For Checkout command (master)
+$ git commit -m "CheckOut command"
+[master (root-commit) cfa2b17] CheckOut command
+ 1 file changed, 2 insertions(+)
+ create mode 100644 file1.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/New Sample Project For Checkout command (master)
+$ cat file1.txt
+This is a First Line    --->(This lines are called tracked files)
+This is a Second Line
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/New Sample Project For Checkout command (master)
+$ vim file1.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/New Sample Project For Checkout command (master)
+$ cat file1.txt
+This is a First Line
+This is a Second Line
+This is a Third Line
+This is a Fourth Line
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/New Sample Project For Checkout command (master)
+$ git checkout -- file1.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/New Sample Project For Checkout command (master)
+$ cat file1.txt
+This is a First Line
+This is a Second Line
+
+Checkout command is used for only tracked file not for untracked file:
+----------------------------------------------------------------------
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/New Sample Project For Checkout command (master)
+$ vim file2.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/New Sample Project For Checkout command (master)
+$ git checkout -- file2.txt
+error: pathspec 'file2.txt' did not match any file(s) known to git
+
+====================================================================================PART-7=============================================================================
+Git Commands:
+=============
+Git reset Command:
+------------------
+1) To remove changes from staging Area.
+2) To undo commits at Repository Level.
+ 
+                                             
+-----------------               -----------------               -----------------     
+|               |git add f.txt  |               |               |               | 
+|   Working     |-------------->|  Staging Area |-------------->|     Local     |     
+|  Directory    |git reset f.txt|               |               |  Repository   |
+|               |<--------------|               |               |               |
+-----------------               -----------------               -----------------
+
+1) To remove changes from staging Area:
+=======================================
+git reset file.extension
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project One
+$ git init
+Initialized empty Git repository in C:/Git Project One/.git/
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project One (master)
+$ vim index.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project One (master)
+$ git add index.txt
+warning: LF will be replaced by CRLF in index.txt.
+The file will have its original line endings in your working directory
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project One (master)
+$ ls
+index.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project One (master)
+$ git ls-files
+index.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project One (master)
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   index.txt
+
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project One (master)
+$ git reset index.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project One (master)
+$ ls
+index.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project One (master)
+$ git ls-files
+Empty
+
+           
+2) To undo commits at Repository Level:
+=======================================
+
+In All Types of reset concept Individual commit will not discard because It is the nature of the reset.
+
+                                                                 Local Repository
+-----------------               -----------------               -----------------     
+|               |               |               |  git commit   |   commit 3    | 
+|   Working     |               |  Staging Area |-------------->|   commit 2    |     
+|  Directory    |               |               |               |   commit 1    |
+|               |               |               |               |               |
+-----------------               -----------------               -----------------
+
+Reset Command for Repository level:
+-----------------------------------
+git reset <mode> <commit id>
+
+1)--mixed --> git reset --mixed 9238aa8
+
+Moves the HEAD to the Specific Commit, and all remaining recent commit will be removed.
+mode will decide whether these changes are going to remove from staging area and working directory or not.
+
+Types of mode we used for reset command:
+---------------------------------------- 
+--mixed
+--soft
+--hard
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git init
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ vim file1.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ vim file2.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ vim file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ ls
+file1.txt  file2.txt  file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git add file1.txt
+warning: LF will be replaced by CRLF in file1.txt.
+The file will have its original line endings in your working directory
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git commit -m "commited file1"
+[master (root-commit) 86f7006] commited file1
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file1.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git add file2.txt;git commit -m "commited file2" ----> (We can also add files and commit the files in single line)
+warning: LF will be replaced by CRLF in file2.txt.
+The file will have its original line endings in your working directory
+[master 9238aa8] commited file2
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file2.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git add file3.txt;git commit -m "commited file3"
+warning: LF will be replaced by CRLF in file3.txt.
+The file will have its original line endings in your working directory
+[master 14af605] commited file3
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ ls
+file1.txt  file2.txt  file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git ls-files
+file1.txt
+file2.txt
+file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git log --oneline
+14af605 (HEAD -> master) commited file3
+9238aa8 commited file2
+86f7006 commited file1
+
+1)1st type of mode:
+===================
+reset with --mixed Mode:
+i)It is a default Mode.
+ii)To discard commits in the local Repository and to discard changes in staging area we should use reset with --mixed option.
+iii)It will not Touch working Directory.
+
+If we want to undo the Latest commit-->(14af605 (HEAD -> master) commited file3) we have to give the previous commit ID--->(9238aa8 commited file2).  
+If we want to undo 2nd (9238aa8 commited file2) and 3rd (14af605 (HEAD -> master) commit we have to give the First commit ID--->(86f7006 commited file1),then it will undo all the Before commits.
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git reset --mixed 9238aa8
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ ls
+file1.txt  file2.txt  file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git ls-files
+file1.txt
+file2.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git log --oneline
+9238aa8 (HEAD -> master) commited file2
+86f7006 commited file1
+
+2)2nd type of mode: 
+===================
+reset with --soft Option:
+i)It is excatly same as --mixed option, but changes are available in working directory as well as in staging area.
+ii)It won't touch staging area and working directory.
+iii)As changes already present in staging area, just we have to use commit to revert back.
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git add file3.txt;git commit -m "adding file3 again"
+
+warning: LF will be replaced by CRLF in file3.txt.
+The file will have its original line endings in your working directory
+[master e94945b] adding file3 again
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ ls
+file1.txt  file2.txt  file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git ls-files
+file1.txt
+file2.txt
+file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git log --oneline
+e94945b (HEAD -> master) adding file3 again
+9238aa8 commited file2
+86f7006 commited file1
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git reset --soft 9238aa8
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ ls
+file1.txt  file2.txt  file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git ls-files
+file1.txt
+file2.txt
+file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git log --oneline
+9238aa8 (HEAD -> master) commited file2
+86f7006 commited file1
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git commit -m "commited file3 again"
+[master 76207d3] commited file3 again
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ ls
+file1.txt  file2.txt  file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git ls-files
+file1.txt
+file2.txt
+file3.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git log --oneline
+76207d3 (HEAD -> master) commited file3 again
+9238aa8 commited file2
+86f7006 commited file1
+
+3)3rd type of mode: 
+===================
+i)It is excatly same as --mixed  except that Changes will be removed from everywhere (local repository,staging area,working directory)
+ii)It is impossible to revert back and hence while using hard reset we have to take special care.
+
+In All Types of reset concept Individual commit will not discard because It is the nature of the reset.
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git reset --hard 86f7006
+HEAD is now at 86f7006 commited file1
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ ls
+file1.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git ls-files
+file1.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project two (master)
+$ git log --oneline
+86f7006 (HEAD -> master) commited file1
+
+--mixed VS --soft VS --hard
+
+1. --mixed:
+===========
+i)Changes will be discarded in local repo and staging area.
+ii)It won't touch working directory.
+iii)working tree won't be clean
+iv)but we can revert with
+       git add .
+       git commit
+
+2. --soft:
+==========
+i)Changes will be discarded only in local repo.
+ii)It won't touch staging area and working directory.
+iii)working tree won't be clean
+iv)but we can revert with
+       git commit
+
+3. --hard:
+==========
+i)Changes will be discarded everywhere.
+ii)working tree won't be clean.
+iii)No way to revert.
+
+====================================================================================PART-8=============================================================================
+Git Branching Commands:
+-----------------------
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project
+$ git init
+Initialized empty Git repository in C:/Git Project/.git/
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ touch a.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ ls
+a.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git add a.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git commit -m "a.txt"
+[master (root-commit) 0bffd6c] a.txt
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 a.txt
+
+1)Git Branch Command:
+===================
+git branch --> is the command to view available branches in command.
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git branch
+* master     (* --> Here '*' indicates Active branch.) 
+
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+2)Create new Branch:
+====================
+git branch branchName --> to create a new branch for our own purpose.
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git branch br1
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git branch
+  br1
+* master
+
+3)Switch to from one branch to another branch:
+==============================================
+git checkout --> discard unstaged changes in working directory.
+git checkout branch_name
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git checkout br1
+Switched to branch 'br1'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br1)
+$ git branch
+* br1
+  master
+
+4)Create new branch & switching to that branch:
+===============================================
+git checkout -b branchname
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br1)
+$ git checkout -b br2
+Switched to a new branch 'br2'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br2)
+$ git branch
+  br1
+* br2
+  master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br2)
+$ git branch
+  br1
+* br2
+  master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br2)
+$ git checkout master
+Switched to branch 'master'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git branch
+  br1
+  br2
+* master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ ls
+a.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ touch b.txt c.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git add b.txt;git commit -m "b.txt"
+[master fdc6d65] b.txt
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 b.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$  git add c.txt;git commit -m "c.txt"
+[master 59071aa] c.txt
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 c.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git ls-files
+a.txt
+b.txt
+c.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git log --oneline
+59071aa (HEAD -> master) c.txt
+fdc6d65 b.txt
+0bffd6c (br2, br1) a.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ ls
+a.txt  b.txt  c.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git checkout br1
+Switched to branch 'br1'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br1)
+$ ls
+a.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br1)
+$ git log --oneline
+0bffd6c (HEAD -> br1, br2) a.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br1)
+$ git branch
+* br1
+  br2
+  master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br1)
+$ touch x.txt y.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br1)
+$ git add x.txt;git commit -m "x.txt"
+[br1 63abe31] x.txt
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 x.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br1)
+$ git add y.txt;git commit -m "y.txt"
+[br1 353c410] y.txt
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 y.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br1)
+$ ls
+a.txt  x.txt  y.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br1)
+$ git checkout master
+Switched to branch 'master'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ ls
+a.txt  b.txt  c.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git branch
+  br1
+  br2
+* master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git checkout br1
+Switched to branch 'br1'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br1)
+$ ls
+a.txt  x.txt  y.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br1)
+$ git checkout master
+Switched to branch 'master'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ ls
+a.txt  b.txt  c.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ touch d.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git add d.txt;git commit -m "d.txt"
+[master e851b34] d.txt
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 d.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ ls
+a.txt  b.txt  c.txt  d.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (master)
+$ git checkout br1
+Switched to branch 'br1'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br1)
+$ git branch
+* br1
+  br2
+  master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project (br1)
+$ ls
+a.txt  x.txt  y.txt
+
+Few Points to Noted in Branching:
+=================================
+1)Once you create any branch what are all files you have commits
+which are already done in the parent branch which will be inherited in to child branch.
+2)In the child branch what ever we created In the child branch we can create any new files also we can change exsisting files, 
+also do n Number of commits in the child branchs which is directly will not impact on the main branch.
+3)Here all branchs are isolated, every branch is independent.
+4)uses of branching concept parallel development will happen,
+without touching the existing code or without interrupting the existing process we can create do parallel development,
+and also code bases very cleanly maintained in the master branch, So we will not able to mess up the code which is already available in the master branch.
+
+====================================================================================PART-9=============================================================================  
+Merging:
+========
+
+1.Fast-Forward Merge: It is a Linear Commit.
+---------------------
+
+                         --------           --------                       -------- Merged(this is a Latest commit HEAD)
+         master branch   | C1M  |-----------| C2M  |-----------------------| C2F  |--------------
+                         |      |           |      |                       |      |     
+                         --------           --------                       --------  /\
+                                               |                               |     |  M
+                                               |                               |     |  e
+                                               |                               |     |  r 
+                                               |                               |     |  g
+                                               |         --------          --------  |  e
+                  Child branch(Feature branch) |---------| C1F  |----------| C2F  |
+                                                         |      |          |      | 
+                                                         --------          --------
+
+In Fast Forward Merge each commit have only one Parent commit. That why this is a Linear Commit.
+
+Points to be Noted in Fast-Forward Merge:
+=========================================
+Changes happened in the child branch only.
+If we written any code in child branches then it is merged into master branch There will be chance for Confilicts in the code.
+If we don't have codes in child branch files then it will merged into master branch there is no chance for Confilicts.
+
+Master Branch:
+==============
+Create files a.txt b.txt and then commit it to the master branch.
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging
+$ git init
+Initialized empty Git repository in C:/Git Project For Merging/.git/
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ touch a.txt b.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git add a.txt;git commit -m "C1M"
+[master (root-commit) c05d1d4] C1M
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 a.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git add b.txt;git commit -m "C2M"
+[master 7a48c9f] C2M
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 b.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ ls
+a.txt  b.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git ls-files
+a.txt
+b.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git log --oneline
+7a48c9f (HEAD -> master) C2M
+c05d1d4 C1M
+
+Child Branch(Feature Branch):
+============================= 
+Now Create a New Branch and name it to Feature then the branch name is called Feature Branch.
+Then All the files in the master branch is inherited into the (Child Branch) Feature branch so the a.txt b.txt is also added in Feature branch. 
+After creating the Feature branch creating some file x.txt y.txt in the feature branch and then add into feature branch then commit it to that branch. 
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git branch feature
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git branch
+  feature
+* master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git checkout feature
+Switched to branch 'feature'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (feature)
+$ git branch
+* feature
+  master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (feature)
+$ touch x.txt y.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (feature)
+$ git add x.txt;git commit -m "C1F"
+[feature e05a4c4] C1F
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 x.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (feature)
+$ git add y.txt;git commit -m "c2F"
+[feature 68dc317] c2F
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 y.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (feature)
+$ ls
+a.txt  b.txt  x.txt  y.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (feature)
+$ git log --oneline
+68dc317 (HEAD -> feature) c2F
+e05a4c4 C1F
+7a48c9f (master) C2M
+c05d1d4 C1M
+
+Whenever we are going to merge the code to master branch we have to switch to child branch to master branch and then we can merge the code.
+Also the merging is done in the master branch we have to execute the 'merge command' in the master branch.
+To Merge the branch:
+====================
+Command is: git merge branchName
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (feature)
+$ git checkout master
+Switched to branch 'master'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git branch
+  feature
+* master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git merge feature
+Updating 7a48c9f..68dc317
+Fast-forward
+ x.txt | 0
+ y.txt | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 x.txt
+ create mode 100644 y.txt
+
+2)Three-Way Merge:  It is Non-Linear Commit.
+==================                    
+
+                                          Xyz.txt                           -------------
+                                          -------                           | Conflicts | 
+                                          ----                              -----\/------     
+                         --------           --------          --------           /\ 
+         master branch   | C1M  |-----------| C2M  |----------| C3M  |-------------------------------------
+                         |      |           |      |          |      |            | 
+                         --------           --------          --------            |
+                                               |                                  |  
+                                               |                                  |  
+                                               |                                  |  
+                                               |                                  |  
+                                               |         --------             --------  
+                  Child branch(Feature branch) |---------| C1F  |-------------| C2F  |
+                                                         |      |             |      | 
+                                                         --------             --------
+
+                                                    Xyz.txt
+                                                    -------  
+                                                    ----
+                                                    ------  1.(Here Some codes are Inherited from master branch to feature branch if any changes are there in Xyz.txt file in master branch,
+                                                    ---      is Again some code is add or modified by the Freature Branch then commit it to master,
+                                                             when we merge in to master branch definitly have Conflits in their.)
+
+                                                            2.(After merging conflict codes in master we can handle only manually to resolve the code.)
+  
+                                                           3.(Whether the new files is created after the feature branch is created mean,
+                                                              Then that the new files are merged to master means it will not have conflicts)
+
+                                                                                         
+                                                                                       Head
+                                                                                        |          
+                                                                                   ------------
+                                                                                   |  master  | 
+                                                                                   |    |     |
+                                                                                   |  merge   |
+                                                                                   |  commit  | 
+                         --------           --------          --------             ------------  
+         master branch   | C1M  |-----------| C2M  |----------| C3M  |------------------|
+                         |      |           |      |          |      |                /
+                         --------           --------          --------               / 
+                                               |                                    /
+                                               |                                   / 
+                                               |                                  /  
+                                               |                                 /   
+                                               |         --------             --------  
+                  Child branch(Feature branch) |---------| C1F  |-------------| C2F  |
+                                                         |      |             |      | 
+                                                         --------             --------
+
+In Three Way Merging Master commits and Child branch commits are there when we are merging master and child branch commits One Extra commit will be created on top of master that is Merge commit.
+So In Three Way Merge there are chances to have one Commit having multiple parent commit. That why this is a Non-Linear Commit.
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging
+$ git init
+Initialized empty Git repository in C:/Git Project For Merging/.git/
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ touch a.txt b.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git add a.txt;git commit -m "C1M"
+[master (root-commit) 8eb3ec7] C1M
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 a.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git add b.txt;git commit -m "C2M"
+[master de8d824] C2M
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 b.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git log --oneline
+de8d824 (HEAD -> master) C2M
+8eb3ec7 C1M
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git branch
+* master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git branch feature
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git branch
+  feature
+* master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git checkout feature
+Switched to branch 'feature'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (feature)
+$ git branch
+* feature
+  master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (feature)
+$ touch x.txt y.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (feature)
+$ git add x.txt;git commit -m "C1F"
+[feature 193ae33] C1F
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 x.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (feature)
+$ git add y.txt;git commit -m "C2F"
+[feature da5fe11] C2F
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 y.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (feature)
+$ git log --oneline
+da5fe11 (HEAD -> feature) C2F
+193ae33 C1F
+de8d824 (master) C2M
+8eb3ec7 C1M
+
+In Master --> we have 2 files and 2 commits
+In Feature--> we have 4 files and 4 commits
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (feature)
+$ git checkout master
+Switched to branch 'master'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git branch
+  feature
+* master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ ls
+a.txt  b.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git log --oneline
+de8d824 (HEAD -> master) C2M
+8eb3ec7 C1M
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ touch c.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git add c.txt;git commit -m "C3M"
+[master 6da30ed] C3M
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 c.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ ls
+a.txt  b.txt  c.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git log --oneline
+6da30ed (HEAD -> master) C3M
+de8d824 C2M
+8eb3ec7 C1M
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git branch
+  feature
+* master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git merge feature
+
+Merge branch 'feature'
+# Please enter a commit message to explain why this merge is necessary,
+# especially if it merges an updated upstream into a topic branch.
+#
+# Lines starting with '#' will be ignored, and an empty message aborts
+# the commit.
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+C:/Git Project For Merging/.git/MERGE_MSG [unix] (02:35 22/03/2022)      1,1 All
+"C:/Git Project For Merging/.git/MERGE_MSG" [unix] 6L, 249B
+
+Merge branch 'feature'
+# Please enter a commit message to explain why this merge is necessary,
+# especially if it merges an updated upstream into a topic branch.
+#
+# Lines starting with '#' will be ignored, and an empty message aborts
+# the commit.
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+C:/Git Project For Merging/.git/MERGE_MSG [unix] (02:35 22/03/2022)      1,1 All
+:wq!
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git merge feature
+Merge made by the 'ort' strategy.
+ x.txt | 0
+ y.txt | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 x.txt
+ create mode 100644 y.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project For Merging (master)
+$ git log --oneline
+388dc53 (HEAD -> master) Merge branch 'feature'
+6da30ed C3M
+da5fe11 (feature) C2F
+193ae33 C1F
+de8d824 C2M
+8eb3ec7 C1M
+
+Points to be Noted in Three-way Merging:
+========================================
+1.Changes happend in master and child branches.
+2.So there is chance of conflicts.
+
+====================================================================================PART-10=============================================================================
+
+Resolve Merge Conflicts:                                Test.txt
+------------------------                                2 Lines
+                                                        +1 Line 
+                                                        --------
+                                                       /| MC3  |\  
+                                                      / |      | \
+                        Test.txt          Test.txt   /  --------  \
+                        1 Line            2 Line    /              \
+                        --------          -------- /                \ --------
+                        | MC1  |----------| MC2  |/                  \| M C  |
+                        |      |          |      |\                  /|      |
+                        --------          -------- \                / --------
+                                                    \              /
+                                                     \            /
+                                                      \ -------- /
+                                                       \| FC1  |/
+                                                        |      |
+                                                        --------
+                                                        Test.txt
+                                                        2 Lines
+                                                        +1 Line
+
+
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts
+$ git init
+Initialized empty Git repository in C:/Git Project to resolve Conflicts/.git/
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ vim test.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ cat test.txt
+this is my first line
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ git add test.txt;git commit -m "MC1"
+warning: LF will be replaced by CRLF in test.txt.
+The file will have its original line endings in your working directory
+[master (root-commit) 3f2db09] MC1
+ 1 file changed, 1 insertion(+)
+ create mode 100644 test.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ vim test.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ cat test.txt
+this is my first line
+this is my second line
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ git add test.txt;git commit -m "MC2"
+warning: LF will be replaced by CRLF in test.txt.
+The file will have its original line endings in your working directory
+[master 8b04d8a] MC2
+ 1 file changed, 1 insertion(+)
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ git log --oneline
+8b04d8a (HEAD -> master) MC2
+3f2db09 MC1
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ git branch feature
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ git checkout feature
+Switched to branch 'feature'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (feature)
+$ git branch
+* feature
+  master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (feature)
+$ git log --oneline
+8b04d8a (HEAD -> feature, master) MC2
+3f2db09 MC1
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (feature)
+$ vim test.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (feature)
+$ cat test.txt
+this is my first line
+this is my second line
+added new line by feature
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (feature)
+$ git add test.txt;git commit -m "FC1"
+warning: LF will be replaced by CRLF in test.txt.
+The file will have its original line endings in your working directory
+[feature 310c709] FC1
+ 1 file changed, 1 insertion(+)
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (feature)
+$ git log --oneline
+310c709 (HEAD -> feature) FC1
+8b04d8a (master) MC2
+3f2db09 MC1
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (feature)
+$ git checkout master
+Switched to branch 'master'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ git branch
+  feature
+* master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ cat test.txt
+this is my first line
+this is my second line
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ vim test.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ git add test.txt;git commit -m "MC3"
+[master c035eb3] MC3
+ 1 file changed, 1 insertion(+)
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ git log --oneline
+c035eb3 (HEAD -> master) MC3
+8b04d8a MC2
+3f2db09 MC1
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ git merge feature
+Auto-merging test.txt
+CONFLICT (content): Merge conflict in test.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master|MERGING)
+$ vim test.txt
+
+this is my first line
+this is my second line
+<<<<<<< HEAD
+added new line by master
+=======
+added new line by feature
+>>>>>>> feature
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+test.txt [dos] (07:25 22/03/2022)                                       7,14 All
+-- INSERT --
+
+So Here we want to delete the unwanted line from the vim test.txt, We can delete those lines by pressing 'd' button two times.
+Here first press 'i' button to --Insert-- and then press 'Esc' button then only we can delete the unwanted line by pressing 'd' button two times and save the file.
+
+this is my first line
+this is my second line
+added new line by master
+added new line by feature
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+test.txt [dos] (07:25 22/03/2022)                                       7,14 All
+:wq!
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master|MERGING)
+$ vim test.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master|MERGING)
+$ cat test.txt
+this is my first line
+this is my second line
+added new line by master
+added new line by feature
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master|MERGING)
+$ git add test.txt;git commit -m "MC"
+[master fdfc38c] MC
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ git log --oneline
+fdfc38c (HEAD -> master) MC
+c035eb3 MC3
+310c709 (feature) FC1
+8b04d8a MC2
+3f2db09 MC1
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ git log --oneline --graph
+*   fdfc38c (HEAD -> master) MC
+|\
+| * 310c709 (feature) FC1
+* | c035eb3 MC3
+|/
+* 8b04d8a MC2
+* 3f2db09 MC1
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ git branch
+  feature
+* master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ git branch -d feature
+Deleted branch feature (was 310c709).
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ git branch
+* master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project to resolve Conflicts (master)
+$ git log --oneline
+fdfc38c (HEAD -> master) MC
+c035eb3 MC3
+310c709 FC1
+8b04d8a MC2
+3f2db09 MC1
+
+====================================================================================PART-11=============================================================================
+Git Rebase: 
+===========
+In three way merge i want to follow the fast forward merge techniqe then it will done by Git Rebase.
+
+Point to be Noted for Three Way Merge:
+======================================
+1.New Merge commit is creating.
+2.Every commit having more than one Parent commit. 
+3.And also we should resolve the conflicts manually.
+ 
+Git Rebase:
+-----------
+i)Git Rebase Internally follows Fast Forward Merge.
+
+In normal we have create master branch and child branch, also commiting in master branch Seperatly as well as commiting child branch Seperatly.
+After that we have to merge the child branch files into master branch files in master branch by using command called 'git merge branchName'.
+
+ii)But in Git Rebase Instead of Merging Child branch directly into the master branch, First we do Git Rebase and then Merge it to master branch. 
+
+ 
+Before Rebase:                                                                      
+==============                                                                        
+                   Base                   This commit is created   
+                  Commit                  once merge is done.                                                                             
+                    |                              |
+                    \/           master            \/ 
+--------        --------        --------        --------
+|  C1M |--------|  C2M |--------|  C3M |--------|Merge |
+|      |        |      |        |      |        |commit|
+--------        --------        --------        -------- 
+                   | >Here Three Way Merge will happen. 
+                   | >Both master and Child commits are Merged.
+                   | >And then the New Merge commit will created on Master Branch.
+                   | >Totally we have 6 commits in normall Three Way Merge.
+                --------        --------
+                |  C1F |--------|  C2F |
+                |      |        |      |
+                --------        --------
+
+Points to Note:
+===============
+1. In Three way Merge there is High chance of getting conflicts
+2. In Three way Merge they are having unique commit ID Based on that we can easily notice what are the change we have done in which branch.
+
+When we are want to Go for Merge:
+=================================
+1.Every time we go with the merge, with in the local repository/local  Environment.
+2.Once you merge the the child branch in master branch final code we can push in to the remote Repository. 
+3.History of the commits are maintained, for example the particular file is merged in to feature to master branch the history is maintained in the feature branch. 
+4.It is Non-Linear.
+
+Step 1:
+=======
+Git Rebase:
+===========   Feature branch on top of master branch performing command called 'git rebase master'  
+
+                            
+--------        --------        --------> master, Base commit        
+|  C1M |--------|  C2M |--------|  C3M |
+|      |        |      |        |      |        
+--------        --------        --------         
+                   |                | 
+             ------|----------------|------    --------        -------- 
+             |     |                |------|---|  C1F |--------|  C2F |
+             |     |     /-----------------|-\ |      |        |      |    new feature branch
+this file--->|  --------/       --------   |  / --------        --------
+Discarded    |  |  C1F |--------|  C2F |   |                      /\
+after execute|  |      |        |      |/--|----------------------|
+git rebase   |  --------        --------   |
+command      -------------------------------
+                     feature Branch
+
+Above diagram Explanation:
+==========================
+1.Rebase the Particular Feature branch on top of master branch.
+
+2.In master we have three commits,In feature branch we have two commits,
+when we execute the command called 'git rebase master',
+then two feature branch commits will not directly adding in to the master branch.
+
+3.When Execute the 'git rebase master' command,
+Git will create internally two  new different commit object for the feature branch on top of master branch,
+as soon as git created new commits object of feature branch then exsisting feature branch commits is discarded,
+After that the Exsisting feature branch commit files are also not changed into the new different commit object feature branch.  
+
+4.The changes for the Exisiting feature branch and new object feature branch are only changes in Commit ID's,
+both the branch commit ID's are not same,
+But rest of the things are same in both branches.
+
+
+Step 2:
+=======
+Merge feature branch to master
+command is : 'git merge feature/git merge branchName'              -->master
+                                                                   |
+--------        --------        --------        --------        -------- 
+|  C1M |--------|  C2M |--------|  C3M |--------|  C1F |--------|  C2F | 
+|      |        |      |        |      |        |      |        |      |
+--------        --------        --------        --------        --------
+                                                                   |
+                                                                   -->feature
+Points to Note:
+===============
+1. In rebase there is no chance of getting conflicts, Because we are adding on Top of master branch.
+2. In rebase it is very difficult to find what are the features are belong to which branch.
+
+
+When we are want to Go for Rebase:
+==================================
+1.Rebase only use for local environment, not recommended to push to remote repository,
+Because Mutiple developers are creating multiple features so we cant able to rebase those all file to master branch.
+2.In Rebase history of the commit is not maintained, because as soon as we created the new feature branch the Existing feature branch is Discarded.
+and new commit ID's will be created for the new created feature branch commits. 
+3.Both the branch commit ID's are not same. 
+4.It is Linear.
+5.Every commit has only one Parent commit.
+
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase
+$ git init
+Initialized empty Git repository in C:/Git Project Rebase/.git/
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)
+$ touch a.txt b.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)
+$ git add a.txt;git commit -m "C1M"
+[master (root-commit) 7c3b823] C1M
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 a.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)
+$ git add b.txt;git commit -m "C2M"
+[master e8bda00] C2M
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 b.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)
+$ git log --oneline
+e8bda00 (HEAD -> master) C2M
+7c3b823 C1M
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)
+$ git branch feature
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)
+$ git checkout feature
+Switched to branch 'feature'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (feature)
+$ git branch
+* feature
+  master
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (feature)
+$ touch x.txt y.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (feature)
+$ git add x.txt;git commit -m "C1F"
+[feature 4fd76d4] C1F
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 x.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (feature)
+$ git add y.txt;git commit -m "C2F"
+[feature edd6e01] C2F
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 y.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (feature)
+$ git log --oneline
+edd6e01 (HEAD -> feature) C2F
+4fd76d4 C1F
+e8bda00 (master) C2M
+7c3b823 C1M
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (feature)
+$ git checkout master
+Switched to branch 'master'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)
+$ touch c.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)
+$ git add c.txt;git commit -m "C3M"
+[master c3fdefa] C3M
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 c.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)
+$ git log --oneline
+c3fdefa (HEAD -> master) C3M
+e8bda00 C2M
+7c3b823 C1M
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)                                  Comparing Commits of Before Rebase Commits and After Rebase Commits:
+$  git log --oneline master
+c3fdefa (HEAD -> master) C3M                                                                                     $  git log --oneline master
+e8bda00 C2M                                                                                                       c3fdefa (HEAD -> master) C3M
+7c3b823 C1M                                                                                                       e8bda00 C2M
+                                                                                                                  7c3b823 C1M
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)
+$  git log --oneline feature                                                                                     $  git log --oneline feature
+edd6e01 (feature) C2F                                                                                            edd6e01 (feature) C2F 
+4fd76d4 C1F                                                                                                      4fd76d4 C1F
+e8bda00 C2M                                                                                                      e8bda00 C2M
+7c3b823 C1M                                                                                                      7c3b823 C1M 
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)                                                   After Rebase
+$ git branch                                    
+  feature                                                                                                        $ git log --oneline master
+* master                                                                                                         c3fdefa (master) C3M
+                                                                                                                 e8bda00 C2M
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)                                                   7c3b823 C1M                               
+$ git checkout feature
+Switched to branch 'feature'                                                                                     $ git log --oneline feature
+                                                                                                                 c54dbbc (HEAD -> feature) C2F
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (feature)                                                  7a4bd9e C1F
+$ git rebase master                                                                                              c3fdefa (master) C3M
+Successfully rebased and updated refs/heads/feature.                                                             e8bda00 C2M
+                                                                                                                 7c3b823 C1M
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (feature)
+$ git log --oneline master
+c3fdefa (master) C3M
+e8bda00 C2M
+7c3b823 C1M
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (feature)
+$ git log --oneline feature
+c54dbbc (HEAD -> feature) C2F
+7a4bd9e C1F
+c3fdefa (master) C3M
+e8bda00 C2M
+7c3b823 C1M
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (feature)
+$ git checkout master
+Switched to branch 'master'
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)
+$ ls
+a.txt  b.txt  c.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)
+$ git log --oneline
+c3fdefa (HEAD -> master) C3M
+e8bda00 C2M
+7c3b823 C1M
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)
+$ git merge feature
+Updating c3fdefa..c54dbbc
+Fast-forward
+ x.txt | 0
+ y.txt | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 x.txt
+ create mode 100644 y.txt
+
+Prakash@DESKTOP-R1NCR26 MINGW64 /c/Git Project Rebase (master)
+$ git log --oneline --graph
+* c54dbbc (HEAD -> master, feature) C2F
+* 7a4bd9e C1F
+* c3fdefa C3M
+* e8bda00 C2M
+* 7c3b823 C1M
+
+====================================================================================PART-12=============================================================================
+GitHub Clone/Pull and Push:
+===========================
+
+1.GitHub is a hosting service for git repositores.
+
+2.Git is the tool, while Github is the service to use git.
+
+Git Clone Command:
+------------------
+git clone 'https://github.com/githubAccountName/RepositoryName.git' --> Press Enter
+
+Git Push Command:
+-----------------
+git push -u origin master/main --> press Enter
+
+How to Upload a Project in GitHub Using Git:
+--------------------------------------------
+C:\Users\Elcot> cd C:\Users\Elcot\eclipse-workspace\SampleProject
+
+C:\Users\Elcot\eclipse-workspace\SampleProject> git init
+Initialized empty Git Repository in C:\Users\Elcot\eclipse-workspace\SampleProject/.git/
+
+C:\Users\Elcot\eclipse-workspace\SampleProject> git remote add origin https://github.com/githubAccountName/RepositoryName.git
+
+C:\Users\Elcot\eclipse-workspace\SampleProject> git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <files>..." to include in what will be commited)
+        .classpath
+        .project
+        .settings/
+        pom.xml
+        src/
+        target/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+C:\Users\Elcot\eclipse-workspace\SampleProject> git add .
+
+C:\Users\Elcot\eclipse-workspace\SampleProject>git status
+On branch master
+
+No commits yet
+
+changes to be commited:
+   (use "git rm --cached <file>..." to unstage)
+         new file:     .classpath
+         new file:     .project
+(like some files are added) 
+
+C:\Users\Elcot\eclipse-workspace\SampleProject> git commit -m "My First commit in GitHub"
+[master (root-commit) 0ferc30] My First commit in Github
+10 files changed, 336 insertion(+)
+create mode 100072 .classpath
+create mode 100072 .project
+
+(like some files are commited) 
+
+C:\Users\Elcot\eclipse-workspace\SampleProject> git push -u origin master/main
+
+
+Git Pull Command:
+-----------------
+git pull origin master/main --> press Enter
+
+
+====================================================================================PART-13=============================================================================
+How to use git commands and GitHub in IDE GUI:
+
+Eclipse/Intellij Idea.
+
+
+
+
+
+
+
+
+
+
+
