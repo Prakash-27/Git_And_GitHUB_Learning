@@ -2443,7 +2443,33 @@ How to use git commands and GitHub in IDE GUI:
 Eclipse/Intellij Idea.
 
 
+Microsoft Windows [Version 10.0.19044.1586]
+(c) Microsoft Corporation. All rights reserved.
 
+C:\Users\Prakash>ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (C:\Users\Prakash/.ssh/id_rsa):
+Created directory 'C:\Users\Prakash/.ssh'.
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in C:\Users\Prakash/.ssh/id_rsa.
+Your public key has been saved in C:\Users\Prakash/.ssh/id_rsa.pub.
+The key fingerprint is:
+'Here the ssh public key will appear as of now I have removed the Key for push the file in gitHub'
+The key's randomart image is:
++---[RSA 3072]----+
+|           o*E.  |
+|          .  o+. |
+|        ..   . +o|
+|       +oo    +.=|
+|      +.S.. .  =o|
+|     o o  .o .*.o|
+|      + . o. =o*.|
+|       . =  *.=.=|
+|        o  o.=.o+|
++----[SHA256]-----+
+
+C:\Users\Prakash>
 
 
 
